@@ -144,7 +144,6 @@ namespace SQLite1
 
         private static int CreateLangTable()
         {
-            SQLiteConnection.CreateFile("langDB.sqlite");
             int result = -1;
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
             {
@@ -168,6 +167,9 @@ namespace SQLite1
 
         static void Main(string[] args)
         {
+            // (re)create the dtabase from scratch
+            SQLiteConnection.CreateFile("langDB.sqlite");
+
             CreateLangTable();
 
             AddLang("french");      // 1
@@ -179,6 +181,10 @@ namespace SQLite1
             DeleteLang(4);
 
             var lls = GetLanguages(0);
+            foreach (var lang in lls)
+            {
+                Console.WriteLine("{0} {1}", lang.Id, lang.LangTitle);
+            }
         }
 
 
