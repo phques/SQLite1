@@ -47,9 +47,11 @@ namespace SQLite1
                         {
                             while (reader.Read())
                             {
-                                Language la = new Language();
-                                la.LangTitle = reader["LangTitle"].ToString();
-                                la.Id = Int32.Parse(reader["Id"].ToString());
+                                Language la = new Language()
+                                {
+                                    LangTitle = reader["LangTitle"].ToString(),
+                                    Id = Int32.Parse(reader["Id"].ToString())
+                                };
                                 langs.Add(la);
                             }
                         }
@@ -57,7 +59,7 @@ namespace SQLite1
                     conn.Close();
                 }
             }
-            catch (SQLiteException e)
+            catch (SQLiteException)
             {
 
             }
@@ -108,7 +110,7 @@ namespace SQLite1
                     {
                         result = cmd.ExecuteNonQuery();
                     }
-                    catch (SQLiteException e)
+                    catch (SQLiteException)
                     {
                     }
                 }
@@ -133,7 +135,7 @@ namespace SQLite1
                     {
                         result = cmd.ExecuteNonQuery();
                     }
-                    catch (SQLiteException e)
+                    catch (SQLiteException)
                     {
                     }
                 }
